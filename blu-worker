@@ -1,0 +1,6 @@
+git clone https://github.com/<your-username-or-org>/blu-worker-api
+cd blu-worker-api
+pnpm init -y
+pnpm add hono drizzle-orm @neondatabase/serverless neon-http zod
+pnpm add -D typescript tsx @types/node wrangler
+mkdir src
