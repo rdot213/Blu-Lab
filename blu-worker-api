@@ -1,0 +1,34 @@
+wrangler.toml
+
+name = "blu-worker-api"
+main = "src/index.ts"
+compatibility_date = "2024-11-06"
+
+[[kv_namespaces]]
+binding = "BLU_KV"
+id = ""   # leave blank for now; we’ll fill it in after creating KV
+
+[[r2_buckets]]
+binding = "BLU_R2"
+bucket_name = "blu-backups"
+
+tsconfig.json
+
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "types": ["@cloudflare/workers-types"],
+    "jsx": "react-jsx",
+    "noEmit": true
+  },
+  "include": ["src"]
+}
+
+src/db.ts
+
+import { neon } from "@neondatabase/serverless";
+import { drizzle } from "drizzle-orm/neon-http";
+export const makeDb = (env: { DATABASE_URL: string }) => drizzle(neon(en
